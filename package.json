@@ -1,6 +1,6 @@
 {
   "name": "common-hjs",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Compiles hogan templates into html using a common base template",
   "bin": {
     "hulk": "lib/hulk"
