@@ -11,3 +11,71 @@ require('babel-core/register')({
     ignore: false,
     only: new RegExp( __dirname )
 })
+
+
+
+var Compiler = require( './compiler' )
+var Watcher = require( './watcher' )
+
+
+function makeArgs( args ) {
+    return args
+        .option( 'b', {
+            alias: 'base',
+            describe: 'Path to base template to compile',
+            demand: true,
+            type: 'string'
+        })
+        .option( 'd', {
+            alias: 'data',
+            describe: 'Data to use for compilation - specify a path to json',
+            demand: false,
+            type: 'string'
+        })
+        .option( 'p', {
+            alias: 'partials',
+            describe: 'Glob of paths to partials',
+            demand: false,
+            type: 'string'
+        })
+        .option( 'verbose', {
+            describe: 'Sets up verbose logging',
+            type: 'boolean'
+        })
+        .option( 'o', {
+            alias: 'output',
+            describe: 'Folder to output to',
+            demand: true,
+            type: 'string'
+        })
+        .help( 'h' )
+        .alias( 'h', 'help' )
+}
+
+var argv = require( 'yargs' )
+    .usage( 'Usage: $0 <command> [options]' )
+    .command( 'compile', 'Compiles templates into HTML', function( yargs ) {
+        var compiler = new Compiler( makeArgs( yargs ).argv )
+        compiler.compile()
+    })
+    .command( 'watch', 'Starts watching files', function( yargs ) {
+        var watchArgv = makeArgs( yargs )
+            .option( 'w', {
+                alias: 'watch',
+                describe: 'Glob to watch for changes',
+                demand: true,
+                type: 'string'
+            })
+            .help( 'h' )
+            .alias( 'h', 'help ')
+            .argv
+
+        var compiler = new Compiler( watchArgv )
+        var watcher = new Watcher( watchArgv )
+
+        watcher.register( compiler.compile )
+        watcher.watch()
+    })
+    .help( 'h' )
+    .alias( 'h', 'help' )
+    .argv
