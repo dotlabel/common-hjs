@@ -8,8 +8,8 @@
   "scripts": {
     "lint": "eslint ./src/**/*.js",
     "test": "tape ./spec/*.js",
-    "example": "./lib/hulk compile -b example/views/base.hjs -d package.json -o dist -p 'example/{common,bundles}/**/*.hjs'",
-    "watch:example": "./lib/hulk watch -b example/views/base.hjs -w 'example/**/*.hjs' -d package.json -o dist -p 'example/{common,bundles}/**/*.hjs'"
+    "example": "./lib/hulk compile -b example/views/base.hjs -d package.json -o example/dist -p 'example/{common,bundles}/**/*.hjs'",
+    "watch:example": "./lib/hulk watch -b example/views/base.hjs -w 'example/**/*.hjs' -d package.json -o example/dist -p 'example/{common,bundles}/**/*.hjs'"
   },
   "keywords": [
     "hogan",
