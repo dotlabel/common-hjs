@@ -26,6 +26,12 @@ function makeArgs( args ) {
             demand: true,
             type: 'string'
         })
+        .option( 'o', {
+            alias: 'output',
+            describe: 'Folder to output to',
+            demand: true,
+            type: 'string'
+        })
         .option( 'd', {
             alias: 'data',
             describe: 'Data to use for compilation - specify a path to json',
@@ -41,12 +47,6 @@ function makeArgs( args ) {
         .option( 'verbose', {
             describe: 'Sets up verbose logging',
             type: 'boolean'
-        })
-        .option( 'o', {
-            alias: 'output',
-            describe: 'Folder to output to',
-            demand: true,
-            type: 'string'
         })
         .help( 'h' )
         .alias( 'h', 'help' )
