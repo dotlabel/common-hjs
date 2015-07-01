@@ -5,6 +5,7 @@
     <title>Document</title>
 </head>
 <body>
+    {{> header}}
     <h1>Base template</h1>
 
     {{> body}}

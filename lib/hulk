@@ -73,6 +73,9 @@ var argv = require( 'yargs' )
         var compiler = new Compiler( watchArgv )
         var watcher = new Watcher( watchArgv )
 
+        // Kickstart a build to get things in sync
+        compiler.compile()
+
         watcher.register( compiler.compile )
         watcher.watch()
     })
